@@ -8,6 +8,7 @@
 </head>
 
 <body>
+
     <div class="row col-12 p-5">
         <div class="col-10 blackjack-table">
             <!-- Dealer -->
@@ -16,29 +17,24 @@
                 <app-blackjack-card [cards]="dealer"></app-blackjack-card>
             </div>
 
-            <!-- Players -->
             <div class="players">
-                <!-- Player 1 -->
+
                 <div class="player player-left">
                     <h3>Player 1</h3>
                     <app-blackjack-card [cards]="players[0]"></app-blackjack-card>
                 </div>
 
-                <!-- Player 2 -->
                 <div class="player player-right">
                     <h3>Player 2</h3>
                     <app-blackjack-card [cards]="players[1]"></app-blackjack-card>
                 </div>
 
-                <!-- Player 3 -->
                 <div class="player player-front">
                     <h3>Player 3</h3>
                     <app-blackjack-card [cards]="players[2]"></app-blackjack-card>
                 </div>
             </div>
         </div>
-
-        <!-- Chat -->
         <div class="col-2 chat">
             <app-chat></app-chat>
         </div>

@@ -1,18 +1,21 @@
 .card {
     width: 60px;
     height: 80px;
-    margin: 10px; /* Kartlar arasındaki boşluğu ayarlar */
-    display: inline-block; /* Kartları yan yana sıralar */
+    margin: 4px;
+    display: inline-block;
     border-radius: 10px;
-    position: relative; /* Mutlak konumlandırma için gerekli */
+    position: relative;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .card-content {
-    position: absolute; /* Mutlak konumlandırma için gerekli */
-    top: 50%; /* Dikey olarak ortala */
-    left: 50%; /* Yatay olarak ortala */
-    transform: translate(-50%, -50%); /* Ortala */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
+    font-family: Arial, sans-serif;
 }
 
 .card-suit-value {
@@ -20,15 +23,15 @@
 }
 
 .card-suit {
-    position: absolute; /* Mutlak konumlandırma için gerekli */
-    top: 5px; /* Kartın üst kısmından biraz aşağıda olacak */
-    left: 5px; /* Kartın sol kısmından biraz içeride olacak */
+    position: absolute;
+    top: 5px;
+    left: 5px;
     font-size: 24px;
 }
 
 .card-value {
-    position: absolute; /* Mutlak konumlandırma için gerekli */
-    bottom: 5px; /* Kartın alt kısmından biraz yukarıda olacak */
-    right: 5px; /* Kartın sağ kısmından biraz içeride olacak */
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
     font-size: 24px;
 }

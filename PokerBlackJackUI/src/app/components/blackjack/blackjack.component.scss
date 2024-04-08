@@ -1,6 +1,5 @@
 body,
 html {
-  height: 100%;
   margin: 0;
 }
 
@@ -10,12 +9,20 @@ html {
 
 .blackjack-table {
   height: 100%;
-  background-color: green;
-  border-radius: 50px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  background-image: url(./../../../assets/img/blackjacktable.jpg);
+  background-size: cover;
+  background-position: center;
+  border-radius: 30px;
+  overflow: hidden;
+  /* İçeriği dışarı taşan kısımları gizle */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  /* Hafif bir gölge ekleyelim */
+  position: relative;
+  /* Göreceli pozisyon */
 }
 
 .dealer {
@@ -24,7 +31,8 @@ html {
   align-items: center;
   padding: 16px;
 }
-.dealer h3{
+
+.dealer h3 {
   background-color: azure;
   border-radius: 10px;
   padding: 7px;
@@ -35,6 +43,7 @@ html {
   justify-content: space-between;
   width: 100%;
   height: 40%;
+  justify-content: space-around; /* İçeriği yatayda ortala */
 }
 
 .player {
@@ -54,4 +63,13 @@ html {
 
 .player-front {
   align-self: center;
+}
+
+.dealer h3,
+.player h3 {
+  background-color: rgba(255, 255, 255, 0.8); /* Hafif yarı saydam beyaz arka plan */
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-bottom: 10px; /* Metin ile içerik arasında biraz boşluk */
+  text-align: center; /* Metni ortala */
 }
