@@ -1,0 +1,34 @@
+.card {
+    width: 60px;
+    height: 80px;
+    margin: 10px; /* Kartlar arasındaki boşluğu ayarlar */
+    display: inline-block; /* Kartları yan yana sıralar */
+    border-radius: 10px;
+    position: relative; /* Mutlak konumlandırma için gerekli */
+}
+
+.card-content {
+    position: absolute; /* Mutlak konumlandırma için gerekli */
+    top: 50%; /* Dikey olarak ortala */
+    left: 50%; /* Yatay olarak ortala */
+    transform: translate(-50%, -50%); /* Ortala */
+    text-align: center;
+}
+
+.card-suit-value {
+    font-size: 24px;
+}
+
+.card-suit {
+    position: absolute; /* Mutlak konumlandırma için gerekli */
+    top: 5px; /* Kartın üst kısmından biraz aşağıda olacak */
+    left: 5px; /* Kartın sol kısmından biraz içeride olacak */
+    font-size: 24px;
+}
+
+.card-value {
+    position: absolute; /* Mutlak konumlandırma için gerekli */
+    bottom: 5px; /* Kartın alt kısmından biraz yukarıda olacak */
+    right: 5px; /* Kartın sağ kısmından biraz içeride olacak */
+    font-size: 24px;
+}

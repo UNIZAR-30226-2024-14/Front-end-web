@@ -1,12 +1,6 @@
-<mat-card [ngStyle]="{'background-color': getCardColor(card.suit)}">
-    <mat-card-header>
-        <mat-card-subtitle>{{ card.suit }}</mat-card-subtitle>
-        <mat-card-title>{{ card.value }}</mat-card-title>
-    </mat-card-header>
-</mat-card>
-
-<div class="blackjack-table">
-    <button (click)="dealCard()">Deal Card</button>
-    <button (click)="showPlayerCards()">Show Player Cards</button>
-    <app-blackjack-card *ngFor="let card of playerCards" [card]="card"></app-blackjack-card>
+<div class="card" *ngFor="let card of cards">
+    <div class="card-content" [ngStyle]="{'color': getCardColor(card.suit)}">
+        <span class="card-suit">{{ getCardSuitSymbol(card.suit) }}</span>
+        <span class="card-value">{{ card.value }}</span>
+    </div>
 </div>

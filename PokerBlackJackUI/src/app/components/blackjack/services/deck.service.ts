@@ -12,6 +12,7 @@ export class DeckService {
 
   constructor() {
     this.createDeck();
+    this.shuffleDeck();
   }
 
   createDeck(): void {
@@ -24,36 +25,46 @@ export class DeckService {
       }
     }
   }
-  
-  
 
   shuffleDeck(): void {
-    // Implement Fisher-Yates shuffle
-    const deck = this.deck.cards;
-    let currentIndex = deck.length;
-    let randomIndex;
-  
-    // While there are elements remaining to shuffle
-    while (currentIndex !== 0) {
-      // Pick a remaining element
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-  
-      // Swap the current element with the random element
-      [deck[currentIndex], deck[randomIndex]] = [deck[randomIndex], deck[currentIndex]];
+    for (let i = this.deck.cards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this.deck.cards[i], this.deck.cards[j]] = [this.deck.cards[j], this.deck.cards[i]];
     }
   }
-  
 
   dealCard(): Card | null {
-    // Check if deck is empty
     if (this.deck.cards.length === 0) {
-      return null; // Indicate no cards left
+      return null;
     }
-  
-    return this.deck.cards.pop()!; // Assuming non-empty deck (checked above)
+    return this.deck.cards.pop()!;
   }
-  
+
+  dealCardsToPlayers(numberOfPlayers: number, cardsPerPlayer: number): Card[][] {
+    const playersCards: Card[][] = [];
+    for (let i = 0; i < numberOfPlayers; i++) {
+      const playerCards: Card[] = [];
+      for (let j = 0; j < cardsPerPlayer; j++) {
+        const card = this.dealCard();
+        if (card) {
+          playerCards.push(card);
+        }
+      }
+      playersCards.push(playerCards);
+    }
+    return playersCards;
+  }
+
+  dealCardsToDealer(cardsPerDealer: number): Card[] {
+    const dealerCards: Card[] = [];
+    for (let i = 0; i < cardsPerDealer; i++) {
+      const card = this.dealCard();
+      if (card) {
+        dealerCards.push(card);
+      }
+    }
+    return dealerCards;
+  }
 
   getDeck(): Deck {
     return this.deck;
