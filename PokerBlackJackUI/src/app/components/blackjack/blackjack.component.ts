@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DeckService } from './services/deck.service';
 import { Card } from './models/card';
+import { NotificationService } from 'src/app/services/notification.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-blackjack',
@@ -8,6 +10,23 @@ import { Card } from './models/card';
   styleUrls: ['./blackjack.component.scss'],
 })
 export class BlackjackComponent implements OnInit {
+  constructor(
+    private deckService: DeckService,
+    private notificationService: NotificationService,
+    private snackBar: MatSnackBar
+  ) {
+    // Deal cards to players and dealer
+    const numberOfPlayers = 5;
+    const cardsPerPlayer = 2;
+    const cardsPerDealer = 2;
+
+    this.players = this.deckService.dealCardsToPlayers(
+      numberOfPlayers,
+      cardsPerPlayer
+    );
+    this.dealer = this.deckService.dealCardsToDealer(cardsPerDealer);
+  }
+
   players: Card[][] = [];
   dealer: Card[] = [];
 
@@ -28,23 +47,61 @@ export class BlackjackComponent implements OnInit {
     'Player 8',
   ];
 
-  constructor(private deckService: DeckService) {
-    // Deal cards to players and dealer
-    const numberOfPlayers = 5;
-    const cardsPerPlayer = 2;
-    const cardsPerDealer = 2;
-
-    this.players = this.deckService.dealCardsToPlayers(
-      numberOfPlayers,
-      cardsPerPlayer
-    );
-    this.dealer = this.deckService.dealCardsToDealer(cardsPerDealer);
-  }
   ngOnInit(): void {
     this.startGame();
     window.onresize = () => {
       this.arrangePlayers();
     };
+  }
+
+  handleWin(): void {
+    this.notificationService.showNotification('Kazandınız!');
+  }
+
+  handleLoss(): void {
+    this.notificationService.showNotification('Kaybettiniz.');
+  }
+
+  handleBlackjack(playerIndex: number): void {
+    const playerName = `Player ${playerIndex + 1}`;
+    this.notificationService.showNotification(`${playerName} has blackjack!`);
+  }
+
+  checkWinners(): void {
+    const dealerTotal = this.calculateTotal(this.dealer);
+    const numberOfPlayers = this.players.length;
+
+    for (let i = 0; i < numberOfPlayers; i++) {
+      const playerTotal = this.calculateTotal(this.players[i]);
+      if (playerTotal === dealerTotal) {
+        // Berabere durumu
+        this.showNotification(`Player ${i + 1} and the dealer tie.`);
+      } else if (playerTotal > dealerTotal && playerTotal <= 21) {
+        // Oyuncu kazanır
+        const winnings = this.currentBets[i] * 2; // Örnek olarak, bahsin iki katı kazanç
+        this.showNotification(`Player ${i + 1} wins ${winnings} chips!`);
+      } else if (dealerTotal > 21 && playerTotal <= 21) {
+        // Dağıtıcı battı, oyuncu kazanır
+        const winnings = this.currentBets[i] * 2; // Örnek olarak, bahsin iki katı kazanç
+        this.showNotification(`Player ${i + 1} wins ${winnings} chips!`);
+      } else if (
+        playerTotal <= 21 &&
+        dealerTotal <= 21 &&
+        playerTotal < dealerTotal
+      ) {
+        // Oyuncu kazanır
+        const winnings = this.currentBets[i] * 2; // Örnek olarak, bahsin iki katı kazanç
+        this.showNotification(`Player ${i + 1} wins ${winnings} chips!`);
+      } else {
+        // Oyuncu kaybeder
+        this.showNotification(`Player ${i + 1} loses.`);
+      }
+    }
+  }
+
+  showNotification(message: string): void {
+    // Burada bildirim gösterme işlemi yapılabilir, örneğin pop-up veya alert kutusu
+    alert(message);
   }
 
   arrangePlayers(): void {
@@ -140,8 +197,17 @@ export class BlackjackComponent implements OnInit {
   }
 
   handlePlayerBlackjack(playerIndex: number): void {
-    console.log(`Player ${playerIndex + 1} has blackjack!`);
+    const playerName = this.playerNames[playerIndex];
+    const message = `${playerName} has blackjack!`;
+    this.notificationService.showNotification(message);
+    this.showSnackBar(message);
     // Burada kazanma işlemleri gerçekleştirilebilir
+  }
+
+  private showSnackBar(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 5000,
+    });
   }
 
   handlePlayerBust(playerIndex: number): void {
