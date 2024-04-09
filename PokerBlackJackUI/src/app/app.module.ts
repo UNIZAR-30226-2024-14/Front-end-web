@@ -12,6 +12,7 @@ import { PokerComponent } from './components/poker/poker.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { BlackjackModule } from './components/blackjack/blackjack.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -27,11 +28,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BlackjackModule
+    BlackjackModule,
+    MatSnackBarModule,
   ],
-  providers: [
-    provideAnimationsAsync()
-  ],
-  bootstrap: [AppComponent]
+  providers: [provideAnimationsAsync()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
