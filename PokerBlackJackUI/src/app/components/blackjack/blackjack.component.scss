@@ -73,3 +73,20 @@ html {
   margin-bottom: 10px; /* Metin ile içerik arasında biraz boşluk */
   text-align: center; /* Metni ortala */
 }
+
+.bet-container {
+  display: flex; /* Öğeleri yatay hizalama */
+  align-items: center; /* Dikeyde hizalama */
+  margin-bottom: 10px; /* Aşağıya 10 piksel boşluk */
+}
+
+.chip {
+  width: 20px; /* Chip resminin genişliği */
+  height: auto; /* Genişliğe oranlı olarak boyut ayarlaması yapar */
+  margin-right: 5px; /* Sağa 5 piksel boşluk */
+}
+
+.bet-amount {
+  font-size: 18px; /* Metin boyutu */
+  font-weight: bold;
+}

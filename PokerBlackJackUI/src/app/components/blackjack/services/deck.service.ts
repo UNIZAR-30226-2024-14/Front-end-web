@@ -3,11 +3,11 @@ import { Card, Suit, Value } from '../models/card';
 import { Deck } from '../models/deck';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DeckService {
   private deck: Deck = {
-    cards: []
+    cards: [],
   };
 
   constructor() {
@@ -20,7 +20,7 @@ export class DeckService {
       for (const value of Object.values(Value)) {
         this.deck.cards.push({
           suit: suit,
-          value: value as Value
+          value: value as Value,
         });
       }
     }
@@ -29,7 +29,10 @@ export class DeckService {
   shuffleDeck(): void {
     for (let i = this.deck.cards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [this.deck.cards[i], this.deck.cards[j]] = [this.deck.cards[j], this.deck.cards[i]];
+      [this.deck.cards[i], this.deck.cards[j]] = [
+        this.deck.cards[j],
+        this.deck.cards[i],
+      ];
     }
   }
 
@@ -40,7 +43,10 @@ export class DeckService {
     return this.deck.cards.pop()!;
   }
 
-  dealCardsToPlayers(numberOfPlayers: number, cardsPerPlayer: number): Card[][] {
+  dealCardsToPlayers(
+    numberOfPlayers: number,
+    cardsPerPlayer: number
+  ): Card[][] {
     const playersCards: Card[][] = [];
     for (let i = 0; i < numberOfPlayers; i++) {
       const playerCards: Card[] = [];
@@ -68,5 +74,11 @@ export class DeckService {
 
   getDeck(): Deck {
     return this.deck;
+  }
+
+  dealInitialCards(numberOfPlayers: number): [Card[][], Card[]] {
+    const playersCards: Card[][] = this.dealCardsToPlayers(numberOfPlayers, 2);
+    const dealerCards: Card[] = this.dealCardsToDealer(2);
+    return [playersCards, dealerCards];
   }
 }

@@ -14,27 +14,31 @@
             <!-- Dealer -->
             <div class="dealer">
                 <h3>Dealer</h3>
-                <app-blackjack-card [cards]="dealer"></app-blackjack-card>
+                <div class="cards">
+                    <app-blackjack-card *ngFor="let card of dealer" [cards]="[card]"></app-blackjack-card>
+                </div>
             </div>
 
             <div class="players">
+                <!-- Players -->
+                <div *ngFor="let player of players; let i = index" class="player player-{{i + 1}}">
+                    <div class="bet-container">
+                        <img src="assets/img/chip.png" alt="Chip" class="chip">
+                        <div class="bet-amount">{{ calculateTotal(player) }}</div>
+                    </div>
+                    <h3>Player {{i + 1}}</h3>
+                    <div class="cards">
+                        <app-blackjack-card *ngFor="let card of player" [cards]="[card]"></app-blackjack-card>
+                    </div>
 
-                <div class="player player-left">
-                    <h3>Player 1</h3>
-                    <app-blackjack-card [cards]="players[0]"></app-blackjack-card>
                 </div>
+                <button class="btn btn-success" (click)="startGame()">Başla</button>
 
-                <div class="player player-right">
-                    <h3>Player 2</h3>
-                    <app-blackjack-card [cards]="players[1]"></app-blackjack-card>
-                </div>
-
-                <div class="player player-front">
-                    <h3>Player 3</h3>
-                    <app-blackjack-card [cards]="players[2]"></app-blackjack-card>
-                </div>
             </div>
         </div>
+
+
+        <!-- Chat -->
         <div class="col-2 chat">
             <app-chat></app-chat>
         </div>
