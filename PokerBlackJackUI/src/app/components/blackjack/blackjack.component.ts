@@ -12,15 +12,25 @@ export class BlackjackComponent implements OnInit {
   dealer: Card[] = [];
 
   // Örnek olarak, sabit bir bahis oranı ve başlangıçtaki bahis miktarı
-  betRate = 10;
+  betAmount: number = 10; // Başlangıç bahis miktarı
   initialBetAmount = 100;
 
   betRates: number[] = [5, 10, 20, 50]; // Bahis oranlarını tutacak dizi
   currentBets: number[] = [this.initialBetAmount]; // Kullanıcıların mevcut bahislerini tutacak dizi
+  playerNames: string[] = [
+    'Player 1',
+    'Player 2',
+    'Player 3',
+    'Player 4',
+    'Player 5',
+    'Player 6',
+    'Player 7',
+    'Player 8',
+  ];
 
   constructor(private deckService: DeckService) {
     // Deal cards to players and dealer
-    const numberOfPlayers = 3;
+    const numberOfPlayers = 5;
     const cardsPerPlayer = 2;
     const cardsPerDealer = 2;
 
@@ -32,6 +42,36 @@ export class BlackjackComponent implements OnInit {
   }
   ngOnInit(): void {
     this.startGame();
+    window.onresize = () => {
+      this.arrangePlayers();
+    };
+  }
+
+  arrangePlayers(): void {
+    const mainPlayerElement = document.querySelector('.main-player');
+    const otherPlayerElements = document.querySelectorAll(
+      '.other-players .player'
+    );
+
+    if (!mainPlayerElement || !otherPlayerElements) return;
+
+    // Ana oyuncuyu ortala
+    const mainPlayerRect = mainPlayerElement.getBoundingClientRect();
+    const mainPlayerX = mainPlayerRect.x + mainPlayerRect.width / 2;
+    const mainPlayerY = mainPlayerRect.y + mainPlayerRect.height / 2;
+
+    // Diğer oyuncuları etrafına yerleştir
+    otherPlayerElements.forEach((player: Element) => {
+      const playerElement = player as HTMLElement; // Element'i HTMLElement'e dönüştür
+      const playerRect = playerElement.getBoundingClientRect();
+      const offsetX = mainPlayerX - (playerRect.x + playerRect.width / 2);
+      const offsetY = mainPlayerY - (playerRect.y + playerRect.height / 2);
+      playerElement.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    });
+  }
+
+  isMainPlayer(index: number): boolean {
+    return index === 0;
   }
 
   updateBetAmount(amount: number): void {
@@ -117,5 +157,26 @@ export class BlackjackComponent implements OnInit {
   handleDealerBust(): void {
     console.log(`Dealer busted!`);
     // Burada kaybetme işlemleri gerçekleştirilebilir
+  }
+
+  increaseBet(): void {
+    this.betAmount += 10; // Bahis miktarını artır
+  }
+
+  decreaseBet(): void {
+    if (this.betAmount > 0) {
+      this.betAmount -= 10; // Bahis miktarını azalt
+    }
+  }
+
+  resetBet(): void {
+    this.betAmount = 0; // Bahis miktarını sıfırla
+  }
+
+  playerCardVisibility: boolean[] = [false, false, false]; // Oyuncuların kartlarının görünürlüğü
+
+  togglePlayerCardsVisibility(playerIndex: number): void {
+    this.playerCardVisibility[playerIndex] =
+      !this.playerCardVisibility[playerIndex];
   }
 }
