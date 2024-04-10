@@ -38,12 +38,12 @@ html {
 
 .players {
   display: flex;
-  flex-direction: column; /* Dikey yönde sıralama */
-  align-items: center; /* Yatayda ortala */
+  flex-direction: column;
+  align-items: center;
 }
 
 .main-player {
-  margin-bottom: 20px; /* Diğer oyuncuların altına bir boşluk bırak */
+  margin-bottom: 20px;
 }
 
 .player {
@@ -56,15 +56,10 @@ html {
 .other-players {
   display: flex;
   flex-wrap: wrap;
-  /* Kullanıcıları alt alta dizmek için */
   justify-content: center;
-  /* Yatayda ortalamak için */
   align-items: center;
-  /* Dikeyde ortalamak için */
   gap: 20px;
-  /* Kullanıcılar arasındaki boşluk */
   margin-top: 20px;
-  /* Üst kısımda biraz boşluk bırakmak için */
 }
 
 .other-players .player {
@@ -73,30 +68,118 @@ html {
   align-items: center;
 }
 
-.bet-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
 .chip {
   width: 20px;
   height: auto;
   margin-right: 5px;
 }
 
-.bet-amount {
+/* Total Container */
+.total-container {
+  display: flex;
+  align-items: center;
+}
+
+.total-container .chip {
+  width: 20px;
+  height: auto;
+  margin-right: 5px;
+}
+
+/* Total */
+.total {
   font-size: 18px;
   font-weight: bold;
 }
 
+/* Bet Control */
 .bet-control {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.bet-control button {
+.bet-control .bet-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.bet-control .bet-buttons button {
   margin: 0 5px;
+}
+
+/* Betting Panel */
+.betting-panel {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.betting-panel h3 {
+  margin-bottom: 10px;
+}
+
+.betting-panel input[type="number"] {
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.betting-panel button {
+  margin-right: 5px;
+}
+
+/* Bet Control */
+.bet-control {
+  position: absolute;
+  bottom: 20px;
+  right: -500px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  z-index: 10;
+  margin-bottom: 60px;
+}
+
+.bet-control .bet-buttons {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.bet-control .bet-buttons button {
+  margin-right: 5px;
+}
+
+/* Betting Panel */
+.betting-panel {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  margin-bottom: 50px;
+}
+
+
+.betting-panel input[type="number"] {
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.betting-panel button {
+  margin-right: 5px;
+}
+
+.bet-input {
+  display: flex;
+  gap: 10px;
+}
+
+/* New Card ve Start Buttons */
+.new-card-start-buttons {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.new-card-start-buttons button {
+  margin-right: 5px;
 }

@@ -8,13 +8,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { BetRatesComponent } from './bet-rates/bet-rates.component';
 import { CurrentBetsComponent } from './current-bets/current-bets.component';
 import { NotificationComponent } from '../notification/notification.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     BlackjackCardComponent,
     BetRatesComponent,
     CurrentBetsComponent,
-    NotificationComponent
+    NotificationComponent,
   ],
   imports: [
     CommonModule,
@@ -22,7 +23,13 @@ import { NotificationComponent } from '../notification/notification.component';
     MatDividerModule,
     MatProgressBarModule,
     MatButtonModule,
+    FormsModule,
   ],
-  exports: [BlackjackCardComponent, BetRatesComponent, CurrentBetsComponent,NotificationComponent],
+  exports: [
+    BlackjackCardComponent,
+    BetRatesComponent,
+    CurrentBetsComponent,
+    NotificationComponent,
+  ],
 })
 export class BlackjackModule {}

@@ -16,6 +16,10 @@
                 <h3>Dealer</h3>
                 <div class="cards">
                     <app-blackjack-card *ngFor="let card of dealer" [cards]="[card]"></app-blackjack-card>
+                    <div class="total-container">
+                        <img src="assets/img/chip.png" alt="Chip" class="chip">
+                        <div class="total">{{ calculateTotal(dealer) }}</div>
+                    </div>
                 </div>
             </div>
 
@@ -24,9 +28,10 @@
                 <!-- Diğer oyuncular -->
                 <div class="other-players">
                     <div *ngFor="let player of players.slice(1); let i = index" class="player player-{{ i + 1 }}">
-                        <div class="bet-container">
+                        <div class="total-container">
+                            <div class="total">Total: {{ calculateTotal(player) }}</div>
                             <img src="assets/img/chip.png" alt="Chip" class="chip">
-                            <div class="bet-amount">{{ calculateTotal(player) }}</div>
+                            <div class="bet-amount"> {{ currentBets[i + 1] }}</div>
                         </div>
                         <h3>{{ playerNames[i + 1] }}</h3> <!-- Kullanıcı ismini görüntüle -->
                         <div class="cards">
@@ -38,9 +43,10 @@
                 <!-- Ana oyuncu -->
                 <div class="main-player">
                     <div class="player">
-                        <div class="bet-container">
+                        <div class="total-container">
+                            <div class="total">Total: {{ calculateTotal(players[0]) }}</div>
                             <img src="assets/img/chip.png" alt="Chip" class="chip">
-                            <div class="bet-amount">{{ calculateTotal(players[0]) }}</div>
+                            <div class="bet-amount"> {{ currentBets[0] }}</div>
                         </div>
                         <h3>{{ playerNames[0] }}</h3> <!-- Kullanıcı ismini görüntüle -->
                         <div class="cards">
@@ -48,18 +54,31 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
             <!-- Bet control panel -->
             <div class="bet-control">
+                <!-- Bet buttons -->
                 <div class="bet-buttons">
-                    <h3>Bahis Miktarı: {{ betAmount }}</h3>
-                    <button class="btn btn-success" (click)="increaseBet()">Artır</button>
-                    <button class="btn btn-warning" (click)="decreaseBet()">Azalt</button>
-                    <button class="btn btn-danger" (click)="resetBet()">Sıfırla</button>
+                    <button class="btn btn-success" (click)="increaseBet()">Increase</button>
+                    <button class="btn btn-warning" (click)="decreaseBet()">Decrase</button>
+                    <button class="btn btn-danger" (click)="resetBet()">Reset</button>
+                </div>
+                <!-- Betting panel -->
+                <div class="betting-panel">
+                    <div class="bet-input">
+                        <input type="number" [(ngModel)]="currentBet" placeholder="Bahis Miktarı">
+                        <button class="btn btn-primary" (click)="placeBet()">Bahis Yap</button>
+                    </div>
                 </div>
             </div>
-            <button class="btn btn-success" (click)="startGame()">Başla</button>
+
+            <!-- New Card ve Start Buttons -->
+            <div class="new-card-start-buttons">
+                <button class="btn btn-primary" (click)="hit()">New Card</button>
+                <button class="btn btn-success" (click)="startGame()">Start</button>
+            </div>
 
         </div>
 

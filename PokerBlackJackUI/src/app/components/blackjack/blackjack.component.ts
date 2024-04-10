@@ -10,6 +10,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./blackjack.component.scss'],
 })
 export class BlackjackComponent implements OnInit {
+  
+  dealerSum: number = 0;
+  yourSum: number = 0;
+  dealerAceCount: number = 0;
+  yourAceCount: number = 0;
+  // hidden: string;
+  // deck: string[];
+  canHit: boolean = true;
+  resultMessage: string = '';
+
   constructor(
     private deckService: DeckService,
     private notificationService: NotificationService,
@@ -29,6 +39,9 @@ export class BlackjackComponent implements OnInit {
 
   players: Card[][] = [];
   dealer: Card[] = [];
+
+  // Başlangıçta bet değerlerini sıfırla
+  currentBet: number = 0;
 
   // Örnek olarak, sabit bir bahis oranı ve başlangıçtaki bahis miktarı
   betAmount: number = 10; // Başlangıç bahis miktarı
@@ -173,24 +186,16 @@ export class BlackjackComponent implements OnInit {
 
   calculateTotal(cards: Card[]): number {
     let total = 0;
-    let aceCount = 0;
 
     // Kartların değerlerini hesapla
     for (const card of cards) {
       if (card.value === 'A') {
-        aceCount++;
         total += 11; // As başlangıçta 11 sayılacak, sonradan 1 sayılabilir
       } else if (['J', 'Q', 'K'].includes(card.value)) {
         total += 10;
       } else {
         total += parseInt(card.value);
       }
-    }
-
-    // As'lar için toplamı düzelt
-    while (total > 21 && aceCount > 0) {
-      total -= 10;
-      aceCount--;
     }
 
     return total;
@@ -225,18 +230,34 @@ export class BlackjackComponent implements OnInit {
     // Burada kaybetme işlemleri gerçekleştirilebilir
   }
 
+  // Bet miktarını arttır
   increaseBet(): void {
-    this.betAmount += 10; // Bahis miktarını artır
+    this.currentBet += 10;
   }
 
+  // Bet miktarını azalt
   decreaseBet(): void {
-    if (this.betAmount > 0) {
-      this.betAmount -= 10; // Bahis miktarını azalt
+    if (this.currentBet >= 10) {
+      this.currentBet -= 10;
     }
   }
 
+  // Bet miktarını sıfırla
   resetBet(): void {
-    this.betAmount = 0; // Bahis miktarını sıfırla
+    this.currentBet = 0;
+  }
+
+  // Bet yap
+  placeBet(): void {
+    if (this.currentBet > 0) {
+      // Kullanıcının bahis miktarını toplam bahis miktarına ekle
+      this.betAmount += this.currentBet;
+      // Kullanıcının bahis miktarını güncelle
+      this.currentBet = 0;
+    } else {
+      // Eğer bahis miktarı geçerli değilse, kullanıcıya bir uyarı göster
+      this.showNotification('Lütfen geçerli bir bahis miktarı girin.');
+    }
   }
 
   playerCardVisibility: boolean[] = [false, false, false]; // Oyuncuların kartlarının görünürlüğü
@@ -244,5 +265,41 @@ export class BlackjackComponent implements OnInit {
   togglePlayerCardsVisibility(playerIndex: number): void {
     this.playerCardVisibility[playerIndex] =
       !this.playerCardVisibility[playerIndex];
+  }
+
+  // Get Card
+  hit(): void {
+    // Oyuncunun elindeki kartların toplam değerini hesapla
+    const playerTotal = this.calculateTotal(this.players[0]);
+
+    // Eğer oyuncunun toplam değeri 21'e eşit veya daha fazlaysa, kart çekme işlemi yapma
+    if (playerTotal >= 21) {
+      // Bildirim göster veya gerekli işlemleri yap
+      this.showNotification(
+        "Kart çekme işlemi yapılamıyor. Elinizin değeri 21'e eşit veya daha fazla."
+      );
+    } else {
+      // Ana oyuncuya kart çek
+      const newCard = this.deckService.dealCard();
+
+      // Eğer yeni kart null değilse
+      if (newCard !== null) {
+        this.players[0].push(newCard);
+
+        // Kart toplamını kontrol et
+        const updatedPlayerTotal = this.calculateTotal(this.players[0]);
+
+        // Oyuncunun toplamı 21'i geçtiyse
+        if (updatedPlayerTotal > 21) {
+          this.handlePlayerBust(0);
+        } else if (updatedPlayerTotal === 21) {
+          // Oyuncu blackjack yaptıysa
+          this.handlePlayerBlackjack(0);
+        }
+      } else {
+        // Eğer yeni kart null ise, oyuncuya kart çekilemediğini belirten bir bildirim göster
+        this.showNotification('Kart çekilemedi, destede yeterli kart kalmadı.');
+      }
+    }
   }
 }
