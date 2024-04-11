@@ -6,7 +6,6 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { PokerComponent } from './components/poker/poker.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
@@ -23,7 +22,6 @@ import { PlayingCardModule } from './models/playing-card/playing-card.module';
     HeaderComponent,
     LoginComponent,
     SignupComponent,
-    PokerComponent,
     ChatComponent,
     GameComponent,
     PlayerComponent,

@@ -25,34 +25,35 @@ export class PlayerComponent implements OnInit {
 
   //#region CODE FOR EDIT MODE
   //this function is called when the user changes the template value of bankroll. I need to make sure the typed value is a real number
-  restrictBankrollInputToNumber(target: any): void {
-    let value = target.value;
-    if (value) {
-      //check if we have multiple commas or dots. If we do this is a wrong number
-      if (
-        this.checkIfValueContainsMultipleCharacters(value, ',') ||
-        this.checkIfValueContainsMultipleCharacters(value, '.')
-      ) {
-        target.value = '';
-        this.player.bankroll = 0;
-        target.valid = false;
-        return;
+  restrictBankrollInputToNumber(event: any): void {
+    const target = event.target as HTMLInputElement;
+    // Null check
+    if (target !== null) {
+      let value = target.value;
+      if (value) {
+        //check if we have multiple commas or dots. If we do this is a wrong number
+        if (
+          this.checkIfValueContainsMultipleCharacters(value, ',') ||
+          this.checkIfValueContainsMultipleCharacters(value, '.')
+        ) {
+          target.value = '';
+          this.player.bankroll = 0;
+          return;
+        }
+        //replace comma with dot
+        if (value.indexOf(',') > -1) {
+          value = value.replace(/,/g, '.');
+        }
+        //and now check if this is a number
+        let parsedBankrollValue = Number(value);
+        if (isNaN(parsedBankrollValue)) {
+          //if parsing fails it means this is not a correct number
+          this.player.bankroll = 0;
+          target.value = '';
+          return;
+        }
+        this.player.bankroll = parsedBankrollValue;
       }
-      //replace comma with dot
-      if (value.indexOf(',') > -1) {
-        value = value.replace(/,/g, '.');
-      }
-      //and now check if this is a number
-      let parsedBankrollValue = Number(value);
-      if (isNaN(parsedBankrollValue)) {
-        //if parsing fails it means this is not a correct number
-        this.player.bankroll = 0;
-        target.value = '';
-        target.valid = false;
-        return;
-      }
-      this.player.bankroll = parsedBankrollValue;
-      target.valid = true;
     }
   }
 

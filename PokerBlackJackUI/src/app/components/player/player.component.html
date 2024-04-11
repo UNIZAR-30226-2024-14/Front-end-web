@@ -6,33 +6,22 @@
             <label for="playerName">Name</label>
             <input class="form-control" [(ngModel)]="player.name" placeholder="Player's name" name="playerName" required
                 #playerName="ngModel" autocomplete="off">
-            <div [hidden]="playerName.valid || playerName.pristine" class="alert alert-danger">Please tye player's name
+            <div [hidden]="playerName.valid || playerName.pristine" class="alert alert-danger">Please type player's name
             </div>
         </div>
 
         <div class="form-group">
             <label for="playerBankroll">Available bankroll</label>
-            <!--Here I wanted to use the default 2 way data binding for the available bankroll, but the Input for "bankroll" was starting with value 0 displayed.
-        That's why I did the "manual" 2 way data binding you see below.
-        Inspiration from: http://blog.thoughtram.io/angular/2016/10/13/two-way-data-binding-in-angular-2.html#creating-custom-two-way-data-bindings -->
-            <!--<input *ngIf="player.bankroll>0" [(ngModel)]="player.bankroll" placeholder="Player's bankroll">-->
-
             <input class="form-control" placeholder="Player's money" [(ngModel)]="player.bankroll"
-                (input)="restrictBankrollInputToNumber(playerBankroll)" name="playerBankroll" required
-                #playerBankroll="ngModel" autocomplete="off">
-
-
+                (input)="restrictBankrollInputToNumber($event)" name="playerBankroll" required #playerBankroll="ngModel"
+                autocomplete="off">
             <div [hidden]="playerBankroll.valid || playerBankroll.pristine" class="alert alert-danger">Specify player's
-                bankroll
-            </div>
+                bankroll</div>
         </div>
     </div>
 
-    <!--Below is the HTML displayed when the game is on! -->
     <div class="player-gameon"
         *ngIf="(player.gameModeOn && !player.isDealer) || (player.gameModeOn && player.isDealer && player.cards !== undefined && player.cards.length)">
-
-        <!--Special overlays when the player won or lost -->
         <div *ngIf="(player.bust || player.winnerOfRound) && !player.isDealer"
             [class]="player.bust ? 'player-overlay lost':'player-overlay won'">
             <div class="player-background-hider"></div>
@@ -49,7 +38,7 @@
         </div>
         <div *ngIf="!player.isDealer" class="betting-amount">
             <div *ngIf="!player.isDealer" class="total-bet-container">
-                <span>Bet for this round</span>
+                <span class="mr-2">Bet for this round:</span>
                 <span class="total-bet-value">{{player.currentBetValue | currency}}</span>
             </div>
             <ul *ngIf="player.cards === undefined || !player.cards.length && player.bankroll > 0"
@@ -70,14 +59,12 @@
                 </li>
             </ul>
             <button *ngIf="player.currentBetValue>0 && (player.cards === undefined || !player.cards.length)"
-                class="btn btn-danger" (click)="resetBet()">Reset bet
-            </button>
+                class="btn btn-danger" (click)="resetBet()">Reset bet</button>
         </div>
         <div class="player-cards-container">
             <ul class="player-cards-list">
                 <li *ngFor="let card of player.cards"
-                    class="playing-card card-suit-{{card.suit}} card-value-{{card.classicValue}}">
-                </li>
+                    class="playing-card card-suit-{{card.suit}} card-value-{{card.classicValue}}"></li>
             </ul>
             <div *ngIf="player.cards !== undefined && player.cards.length" class="player-points">
                 <span>Points</span>
@@ -90,5 +77,4 @@
             <button class="btn btn-danger" (click)="stand()">Stand</button>
         </div>
     </div>
-
 </div>

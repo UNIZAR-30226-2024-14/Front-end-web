@@ -83,7 +83,7 @@ var LobbyComponent = (function () {
   LobbyComponent = __decorate(
     [
       core_1.Component({
-        selector: "blackjack-lobby",
+        selector: "app-lobby",
         templateUrl: "./app/components/lobby/lobby.component.html",
         styleUrls: ["lobby.component.css"],
       }),

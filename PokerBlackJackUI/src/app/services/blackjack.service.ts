@@ -58,7 +58,7 @@ export class BlackjackService {
     this.players = players;
 
     //now change the URl and move it to the game route
-    this.router.navigate(['/game']);
+    this.router.navigate(['/blackjack']);
   }
 
   //this method is called from the game component

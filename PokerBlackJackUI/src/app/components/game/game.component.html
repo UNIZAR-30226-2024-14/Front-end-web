@@ -1,3 +1,4 @@
+
 <div id="blackjack-game" class="container">
   <div class="header">
     <h1>Good luck to all participants</h1>
@@ -9,12 +10,12 @@
   <div class="table-container">
     <!-- On the top of the page show the dealer -->
     <div class="dealer-area">
-      <app-player [player]="dealer"></app-player>
+      <app-player [player]="dealer" [gameModeOn]="true"></app-player>
     </div>
     <!-- And now render the list of players -->
     <ul class="players-area">
       <li class="player-container" *ngFor="let player of players">
-        <app-player [player]="player"></app-player>
+        <app-player [player]="player" [gameModeOn]="true"></app-player>
       </li>
     </ul>
   </div>
