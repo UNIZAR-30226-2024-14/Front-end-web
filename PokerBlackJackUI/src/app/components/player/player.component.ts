@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { PlayerModule } from 'src/app/models/player/player.module';
 import { BlackjackService } from 'src/app/services/blackjack.service';
 
@@ -8,9 +9,10 @@ import { BlackjackService } from 'src/app/services/blackjack.service';
   styleUrl: './player.component.scss',
 })
 export class PlayerComponent implements OnInit {
-  @Input() player!: PlayerModule;
+  @Input() player: PlayerModule | any;
   //next is an input parameter which will change the player from creation/edit mode into the game mode
-  @Input() gameModeOn!: boolean;
+  @Input() gameModeOn: boolean | any;
+  playerForm!: FormGroup;
 
   //injecting the main game service
   constructor(private blackjackService: BlackjackService) {}
