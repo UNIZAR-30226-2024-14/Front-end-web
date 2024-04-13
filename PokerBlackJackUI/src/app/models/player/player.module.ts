@@ -1,0 +1,40 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { PlayingCardModule } from '../playing-card/playing-card.module';
+
+@NgModule({
+  declarations: [],
+  imports: [CommonModule],
+})
+export class PlayerModule {
+  //the id property is used just for counting the users
+  id?: number;
+  //the name of the player
+  name: string = '';
+  //how much many the player has
+  bankroll!: number;
+  //next is the amount won during one round
+  amountWon: number = 0;
+  //is dealer property
+  isDealer?: boolean;
+  //next property contains the cards of a user during one hand
+  cards: PlayingCardModule[] = [];
+  //this property keeps track of the total points of the user
+  points: number = 0;
+  //"standing" property is made true when the user clicks on stand, which means he doesn't want any more cards
+  standing?: boolean;
+
+  //next is a helping property which manages the player component view
+  gameModeOn?: boolean;
+
+  //special properties used during the game
+  currentBetValue: number = 0;
+  //next property is set to true when the player exceeds 21
+  bust?: boolean;
+  //next variable is set to true when the players has 21 points
+  blackjack?: boolean;
+  //next variable is set to true when player has 21 points from ONLY 2 cards. In this situation the payout is 3:2
+  naturalBlackjack?: boolean;
+  //a flag which tells at the end if the player won or not the round
+  winnerOfRound!: boolean;
+}

@@ -1,0 +1,26 @@
+<div id="blackjack-lobby" class="container">
+    <h2>Welcome to Blackjack game</h2>
+    <h4>Please select the number of players and hit play!</h4>
+    <div class="row">
+        <div class="col-md-6">
+            <select class="form-select" (change)="onNumberOfPlayersSelected($event)">
+                <option value="0" selected>Select how many players will play</option>
+                <option value="1">1 player</option>
+                <option value="2">2 players</option>
+                <option value="3">3 players</option>
+                <option value="4">4 players</option>
+            </select>
+        </div>
+    </div>
+
+    <div *ngIf="numberOfPlayersSelected > 0" class="player-names mt-4">
+        <form (ngSubmit)="startGame()" #playerSelectionForm="ngForm">
+            <button type="submit" class="btn btn-success">PLAY!</button>
+            <ul class="list-group mt-3">
+                <li *ngFor="let player of availablePlayers" class="list-group-item">
+                    <app-player [player]="player"></app-player>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
