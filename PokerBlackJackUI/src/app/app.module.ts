@@ -14,6 +14,7 @@ import { PlayerComponent } from './components/player/player.component';
 import { LobbyComponent } from './components/lobby/lobby.component';
 import { PlayerModule } from './models/player/player.module';
 import { PlayingCardModule } from './models/playing-card/playing-card.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { PlayingCardModule } from './models/playing-card/playing-card.module';
     FormsModule,
     PlayerModule,
     PlayingCardModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
