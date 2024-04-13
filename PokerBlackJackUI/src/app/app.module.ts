@@ -14,26 +14,28 @@ import { BlackjackModule } from './components/blackjack/blackjack.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
+import { PokerCardComponent } from "./components/poker/poker-card/poker-card.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    HeaderComponent,
-    LoginComponent,
-    SignupComponent,
-    BlackjackComponent,
-    PokerComponent,
-    ChatComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BlackjackModule,
-    MatSnackBarModule,
-    FormsModule,
-  ],
-  providers: [provideAnimationsAsync()],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        HeaderComponent,
+        LoginComponent,
+        SignupComponent,
+        BlackjackComponent,
+        PokerComponent,
+        ChatComponent,
+    ],
+    providers: [provideAnimationsAsync()],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BlackjackModule,
+        MatSnackBarModule,
+        FormsModule,
+        PokerCardComponent
+    ]
 })
 export class AppModule {}
