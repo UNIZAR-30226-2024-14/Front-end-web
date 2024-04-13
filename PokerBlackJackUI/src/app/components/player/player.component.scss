@@ -86,17 +86,17 @@ $gold: #ffeb3b;
           width: 60px;
 
           &.five {
-            background: url(../../images/casino_chip_5.png) no-repeat 50% 50% transparent;
+            background: url(/PokerBlackJackUI/src/assets/img/blackjack/casino_chip_5.png) no-repeat 50% 50% transparent;
             background-size: cover;
           }
 
           &.ten {
-            background: url(../../images/casino_chip_10.png) no-repeat 50% 50% transparent;
+            background: url(/PokerBlackJackUI/src/assets/img/blackjack/casino_chip_10.png) no-repeat 50% 50% transparent;
             background-size: cover;
           }
 
           &.twenty {
-            background: url(../../images/casino_chip_20.png) no-repeat 50% 50% transparent;
+            background: url(/PokerBlackJackUI/src/assets/img/blackjack/casino_chip_20.png) no-repeat 50% 50% transparent;
             background-size: cover;
           }
 
@@ -165,166 +165,166 @@ $gold: #ffeb3b;
 
           &.card-suit-club {
             &.card-value-2 {
-              background-image: url(../../images/c2.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/c2.png);
             }
             &.card-value-3 {
-              background-image: url(../../images/c3.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/c3.png);
             }
             &.card-value-4 {
-              background-image: url(../../images/c4.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/c4.png);
             }
             &.card-value-5 {
-              background-image: url(../../images/c5.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/c5.png);
             }
             &.card-value-6 {
-              background-image: url(../../images/c6.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/c6.png);
             }
             &.card-value-7 {
-              background-image: url(../../images/c7.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/c7.png);
             }
             &.card-value-8 {
-              background-image: url(../../images/c8.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/c8.png);
             }
             &.card-value-9 {
-              background-image: url(../../images/c9.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/c9.png);
             }
             &.card-value-10 {
-              background-image: url(../../images/c10.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/c10.png);
             }
             &.card-value-11 {
-              background-image: url(../../images/c1.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/c1.png);
             }
             &.card-value-12 {
-              background-image: url(../../images/c11.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/c11.png);
             }
             &.card-value-13 {
-              background-image: url(../../images/c12.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/c12.png);
             }
             &.card-value-14 {
-              background-image: url(../../images/c13.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/c13.png);
             }
           }
           &.card-suit-spade {
             &.card-value-2 {
-              background-image: url(../../images/s2.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/s2.png);
             }
             &.card-value-3 {
-              background-image: url(../../images/s3.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/s3.png);
             }
             &.card-value-4 {
-              background-image: url(../../images/s4.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/s4.png);
             }
             &.card-value-5 {
-              background-image: url(../../images/s5.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/s5.png);
             }
             &.card-value-6 {
-              background-image: url(../../images/s6.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/s6.png);
             }
             &.card-value-7 {
-              background-image: url(../../images/s7.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/s7.png);
             }
             &.card-value-8 {
-              background-image: url(../../images/s8.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/s8.png);
             }
             &.card-value-9 {
-              background-image: url(../../images/s9.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/s9.png);
             }
             &.card-value-10 {
-              background-image: url(../../images/s10.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/s10.png);
             }
             &.card-value-11 {
-              background-image: url(../../images/s1.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/s1.png);
             }
             &.card-value-12 {
-              background-image: url(../../images/s11.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/s11.png);
             }
             &.card-value-13 {
-              background-image: url(../../images/s12.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/s12.png);
             }
             &.card-value-14 {
-              background-image: url(../../images/s13.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/s13.png);
             }
           }
           &.card-suit-heart {
             &.card-value-2 {
-              background-image: url(../../images/h2.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/h2.png);
             }
             &.card-value-3 {
-              background-image: url(../../images/h3.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/h3.png);
             }
             &.card-value-4 {
-              background-image: url(../../images/h4.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/h4.png);
             }
             &.card-value-5 {
-              background-image: url(../../images/h5.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/h5.png);
             }
             &.card-value-6 {
-              background-image: url(../../images/h6.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/h6.png);
             }
             &.card-value-7 {
-              background-image: url(../../images/h7.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/h7.png);
             }
             &.card-value-8 {
-              background-image: url(../../images/h8.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/h8.png);
             }
             &.card-value-9 {
-              background-image: url(../../images/h9.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/h9.png);
             }
             &.card-value-10 {
-              background-image: url(../../images/h10.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/h10.png);
             }
             &.card-value-11 {
-              background-image: url(../../images/h1.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/h1.png);
             }
             &.card-value-12 {
-              background-image: url(../../images/h11.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/h11.png);
             }
             &.card-value-13 {
-              background-image: url(../../images/h12.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/h12.png);
             }
             &.card-value-14 {
-              background-image: url(../../images/h13.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/h13.png);
             }
           }
           &.card-suit-diamond {
             &.card-value-2 {
-              background-image: url(../../images/d2.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/d2.png);
             }
             &.card-value-3 {
-              background-image: url(../../images/d3.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/d3.png);
             }
             &.card-value-4 {
-              background-image: url(../../images/d4.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/d4.png);
             }
             &.card-value-5 {
-              background-image: url(../../images/d5.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/d5.png);
             }
             &.card-value-6 {
-              background-image: url(../../images/d6.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/d6.png);
             }
             &.card-value-7 {
-              background-image: url(../../images/d7.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/d7.png);
             }
             &.card-value-8 {
-              background-image: url(../../images/d8.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/d8.png);
             }
             &.card-value-9 {
-              background-image: url(../../images/d9.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/d9.png);
             }
             &.card-value-10 {
-              background-image: url(../../images/d10.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/d10.png);
             }
             &.card-value-11 {
-              background-image: url(../../images/d1.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/d1.png);
             }
             &.card-value-12 {
-              background-image: url(../../images/d11.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/d11.png);
             }
             &.card-value-13 {
-              background-image: url(../../images/d12.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/d12.png);
             }
             &.card-value-14 {
-              background-image: url(../../images/d13.png);
+              background-image: url(/PokerBlackJackUI/src/assets/img/blackjack/d13.png);
             }
           }
         }
