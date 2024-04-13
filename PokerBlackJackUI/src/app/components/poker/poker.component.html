@@ -7,11 +7,46 @@
 </head>
 <body>
     <div class="row col-12 p-5">
+        <p>
+            <!-- hand rank message -->
+            <span *ngIf="handRankMessage">{{handRankMessage}}</span>
+        </p>
         <div class="col-10 poker-table">
+            <div class="row">
+                <!-- player2 -->
+                <div class="player2 col-12 text-center table-cards ">
+                    <app-poker-card *ngFor="let card of combinedCards" [cardImageUrl]="card.image"></app-poker-card>
+                </div>
+            </div>
+
+            <div class="row w-100">
+                <!-- player1 -->
+                <div class="player1 col-3 text-center table-cards rotate-left">
+                    <app-poker-card *ngFor="let card of playerHand" [cardImageUrl]="card.image"></app-poker-card>
+                </div>
+                <!-- table-cards -->
+                <div class="col-6 text-center table-cards">
+                    <app-poker-card *ngFor="let card of tableHand" [cardImageUrl]="card.image"></app-poker-card>
+                </div>
+                <!-- player3 -->
+                <div class="player3 col-3 text-center table-cards rotate-right">
+                    <app-poker-card *ngFor="let card of playerHand" [cardImageUrl]="card.image"></app-poker-card>
+                </div>
+            </div>
+            <!-- main-player -->
+            <div class="row">
+                <div class="main-player col-12 text-center table-cards">
+                  <app-poker-card *ngFor="let card of playerHand" [cardImageUrl]="card.image"></app-poker-card>
+                </div>
+              </div>
         </div>
         <div class="col-2 chat">
             <app-chat></app-chat>
         </div>
+    </div>
+    <div>
+        <!-- combined cards -->
+        combined cards: {{combinedCards | json}}
     </div>
 </body>
 </html>
