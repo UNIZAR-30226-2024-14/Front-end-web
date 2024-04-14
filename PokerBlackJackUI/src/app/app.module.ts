@@ -15,6 +15,8 @@ import { LobbyComponent } from './components/lobby/lobby.component';
 import { PlayerModule } from './models/player/player.module';
 import { PlayingCardModule } from './models/playing-card/playing-card.module';
 import { HttpClientModule } from '@angular/common/http';
+import { PokerComponent } from './components/poker/poker.component';
+import { PokerCardComponent } from "./components/poker/poker-card/poker-card.component";
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     GameComponent,
     PlayerComponent,
     LobbyComponent,
+    PokerComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
     PlayerModule,
     PlayingCardModule,
     HttpClientModule,
+    PokerCardComponent
   ],
   providers: [],
   bootstrap: [AppComponent],
