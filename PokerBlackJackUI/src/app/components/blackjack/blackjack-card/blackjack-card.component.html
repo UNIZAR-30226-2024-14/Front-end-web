@@ -1,6 +1,0 @@
-<div class="card" *ngFor="let card of cards">
-    <div class="card-content" [ngStyle]="{'color': getCardColor(card.suit)}">
-        <span class="card-suit">{{ getCardSuitSymbol(card.suit) }}</span>
-        <span class="card-value">{{ card.value }}</span>
-    </div>
-</div>
