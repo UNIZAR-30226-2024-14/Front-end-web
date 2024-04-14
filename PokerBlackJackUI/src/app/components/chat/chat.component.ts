@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
@@ -10,36 +10,36 @@ export class ChatComponent implements OnInit {
   messages: { player: string; message: string }[] = [];
   newMessage: string = '';
 
+  @ViewChild('messagesContainer', { static: true }) private messagesContainer!: ElementRef;
+
+
   constructor(private chatService: ChatService) {}
 
   ngOnInit() {
     this.loadMessages();
   }
 
-  loadMessages() {
-    this.chatService.getMessages().subscribe(
-      (data: any[]) => {
-        this.messages = data;
-      },
-      (error) => {
-        console.error('Error loading messages:', error);
-      }
-    );
+  loadMessages(): void {
+    this.chatService
+      .getMessages()
+      .subscribe((messages) => {
+        this.messages = messages;
+        this.scrollToBottom();
+      });
   }
 
-  sendMessage() {
+  sendMessage(): void {
     if (this.newMessage.trim() !== '') {
-      this.chatService.sendMessage(this.newMessage).subscribe(
-        (response) => {
-          console.log('Message sent successfully:', response);
-          this.newMessage = ''; // Gönderildikten sonra metin kutusunu temizle
-          this.loadMessages(); // Yeni mesaj gönderildikten sonra mesajları yeniden yükle
-        },
-        (error) => {
-          console.error('Error sending message:', error);
-        }
-      );
+      this.chatService.sendMessage('Player', this.newMessage);
+      this.newMessage = ''; // Gönderildikten sonra metin kutusunu temizle
+      this.scrollToBottom();
     }
   }
-}
 
+  private scrollToBottom(): void {
+    try {
+      this.messagesContainer.nativeElement.scrollTop =
+        this.messagesContainer.nativeElement.scrollHeight;
+    } catch (err) {}
+  }
+}

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,13 +10,14 @@ export class ChatService {
 
   constructor(private http: HttpClient) {}
 
-  // Örnek bir GET isteği
-  getMessages(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/messages`);
+  private messages: { player: string; message: string }[] = [];
+
+
+  getMessages(): Observable<{ player: string; message: string }[]> {
+    return of(this.messages);
   }
 
-  // Örnek bir POST isteği
-  sendMessage(message: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/messages`, { message });
+  sendMessage(player: string, message: string): void {
+    this.messages.push({ player, message });
   }
 }
