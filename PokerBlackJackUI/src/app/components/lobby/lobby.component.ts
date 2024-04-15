@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PlayerModule } from 'src/app/models/player/player.module';
 import { BlackjackService } from 'src/app/services/blackjack.service';
+import { Player } from '../player/player';
 
 @Component({
   selector: 'app-lobby',
@@ -9,7 +9,7 @@ import { BlackjackService } from 'src/app/services/blackjack.service';
 })
 export class LobbyComponent implements OnInit {
   numberOfPlayersSelected!: number;
-  availablePlayers!: PlayerModule[];
+  availablePlayers!: Player[];
 
   //injecting the main game service
   constructor(private blackjackService: BlackjackService) {}

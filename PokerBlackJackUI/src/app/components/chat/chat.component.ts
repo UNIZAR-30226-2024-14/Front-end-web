@@ -1,5 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChatService } from 'src/app/services/chat.service';
+import { Message } from './message';
 
 @Component({
   selector: 'app-chat',
@@ -7,11 +8,8 @@ import { ChatService } from 'src/app/services/chat.service';
   styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit {
-  messages: { player: string; message: string }[] = [];
+  messages: Message[] = [];
   newMessage: string = '';
-
-  @ViewChild('messagesContainer', { static: true }) private messagesContainer!: ElementRef;
-
 
   constructor(private chatService: ChatService) {}
 
@@ -20,26 +18,47 @@ export class ChatComponent implements OnInit {
   }
 
   loadMessages(): void {
-    this.chatService
-      .getMessages()
-      .subscribe((messages) => {
-        this.messages = messages;
+    this.chatService.getMessages().subscribe(
+      (response) => {
+        this.messages = response.map((comment: any) => {
+          return {
+            username: comment.name,
+            time: comment.email,
+            msg: comment.body,
+          };
+        });
         this.scrollToBottom();
-      });
+      },
+      (error) => {
+        console.error('Error loading messages:', error);
+      }
+    );
   }
 
   sendMessage(): void {
     if (this.newMessage.trim() !== '') {
-      this.chatService.sendMessage('Player', this.newMessage);
-      this.newMessage = ''; // Gönderildikten sonra metin kutusunu temizle
-      this.scrollToBottom();
+      const currentTime = new Date();
+      const time = `${currentTime.getHours()}:${currentTime.getMinutes()}`;
+
+      this.chatService.sendMessage('Player', time, this.newMessage).subscribe(
+        (response) => {
+          console.log('Message sent successfully:', response);
+          this.newMessage = ''; // Gönderildikten sonra metin kutusunu temizle
+          this.loadMessages(); // Yeni mesajı yüklemek için API'ye istek gönderin
+        },
+        (error) => {
+          console.error('Error sending message:', error);
+        }
+      );
     }
   }
 
-  private scrollToBottom(): void {
-    try {
-      this.messagesContainer.nativeElement.scrollTop =
-        this.messagesContainer.nativeElement.scrollHeight;
-    } catch (err) {}
+  scrollToBottom(): void {
+    setTimeout(() => {
+      const chatContainer = document.querySelector('.messages');
+      if (chatContainer) {
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      }
+    });
   }
 }

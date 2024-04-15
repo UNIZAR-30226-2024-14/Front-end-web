@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlayingCardModule } from '../models/playing-card/playing-card.module';
-import { PlayerModule } from '../models/player/player.module';
+import { Player } from '../components/player/player';
+
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +11,8 @@ export class BlackjackService {
   //the current playing card deck
   cardDeck!: PlayingCardModule[];
   //all the connected players
-  players!: PlayerModule[];
-  dealer!: PlayerModule;
+  players!: Player[];
+  dealer!: Player;
   //I use the next private variable to create the correct IDs for the 52 cards rom our pack
   private cardsIdIndex: number = 0;
   private playerHighestPoints: number = 0;
@@ -53,7 +54,7 @@ export class BlackjackService {
   }
 
   //this is the main method which will begin a new game. As a parameter I sent the list of players from the lobby component
-  startGame(players: PlayerModule[]): void {
+  startGame(players: Player[]): void {
     //step 1, set the received players
     this.players = players;
 
@@ -62,12 +63,12 @@ export class BlackjackService {
   }
 
   //this method is called from the game component
-  getPlayers(): PlayerModule[] {
+  getPlayers(): Player[] {
     return this.players;
   }
 
   //this method is executed at the beginning of each game, where each player get's 2 cards and the dealer only one
-  dealHand(dealer: PlayerModule): void {
+  dealHand(dealer: Player): void {
     //First step at each hand, generate the card deck
     this.generateCardDeck();
 
@@ -99,13 +100,13 @@ export class BlackjackService {
   }
 
   //this method is called also from the player componenet when the player clicks on deal card
-  dealCard(player: PlayerModule, isForDealer: boolean): void {
+  dealCard(player: Player, isForDealer: boolean): void {
     player.cards.push(this.extractCardFromPack());
     this.computePoints(player, isForDealer);
   }
 
   //this is executed when the player stands
-  playerStands(player: PlayerModule): void {
+  playerStands(player: Player): void {
     player.standing = true;
     this.dealerAutomaticPlay();
   }
@@ -226,7 +227,7 @@ export class BlackjackService {
   }
 
   //this is a function which does the calculation of points
-  private computePoints(player: PlayerModule, isForDealer: boolean): void {
+  private computePoints(player: Player, isForDealer: boolean): void {
     let tempAces: PlayingCardModule[] = [];
     player.points = 0;
     for (let card of player.cards) {

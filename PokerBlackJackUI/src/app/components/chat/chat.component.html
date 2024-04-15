@@ -3,7 +3,7 @@
     <div class="messages">
         <!-- Burada sohbet mesajları gösterilecek -->
         <div class="message" *ngFor="let message of messages">
-            {{ message.player }}: {{ message.message }}
+            <b>{{ message.username }}</b>: {{ message.msg }}
         </div>
     </div>
     <div class="input-container">
