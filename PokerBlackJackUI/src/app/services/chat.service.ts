@@ -7,8 +7,17 @@ import { Observable } from 'rxjs';
 })
 export class ChatService {
   private apiUrl = 'https://jsonplaceholder.typicode.com';
+  private usernames: string[] = [];
 
   constructor(private http: HttpClient) {}
+
+  setUsernames(usernames: string[]): void {
+    this.usernames = usernames;
+  }
+
+  getUsernames(): string[] {
+    return this.usernames;
+  }
 
   getMessages(): Observable<any> {
     return this.http.get<any[]>(this.apiUrl + '/comments');

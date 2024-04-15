@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChatService } from 'src/app/services/chat.service';
 import { Message } from './message';
 
@@ -10,6 +10,7 @@ import { Message } from './message';
 export class ChatComponent implements OnInit {
   messages: Message[] = [];
   newMessage: string = '';
+  usernames: string[] = this.chatService.getUsernames();
 
   constructor(private chatService: ChatService) {}
 
@@ -40,16 +41,18 @@ export class ChatComponent implements OnInit {
       const currentTime = new Date();
       const time = `${currentTime.getHours()}:${currentTime.getMinutes()}`;
 
-      this.chatService.sendMessage('Player', time, this.newMessage).subscribe(
-        (response) => {
-          console.log('Message sent successfully:', response);
-          this.newMessage = ''; // Gönderildikten sonra metin kutusunu temizle
-          this.loadMessages(); // Yeni mesajı yüklemek için API'ye istek gönderin
-        },
-        (error) => {
-          console.error('Error sending message:', error);
-        }
-      );
+      this.chatService
+        .sendMessage(this.usernames[0], time, this.newMessage)
+        .subscribe(
+          (response) => {
+            console.log('Message sent successfully:', response);
+            this.newMessage = ''; // Gönderildikten sonra metin kutusunu temizle
+            this.loadMessages(); // Yeni mesajı yüklemek için API'ye istek gönderin
+          },
+          (error) => {
+            console.error('Error sending message:', error);
+          }
+        );
     }
   }
 
