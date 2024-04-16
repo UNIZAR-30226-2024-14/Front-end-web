@@ -11,10 +11,13 @@ export class ChatComponent implements OnInit {
   messages: Message[] = [];
   newMessage: string = '';
   usernames: string[] = this.chatService.getUsernames();
+  selectedUsername: string = '';
 
   constructor(private chatService: ChatService) {}
 
   ngOnInit() {
+    this.usernames = this.chatService.getUsernames();
+    this.selectedUsername = this.usernames[0];
     this.loadMessages();
   }
 
@@ -42,12 +45,12 @@ export class ChatComponent implements OnInit {
       const time = `${currentTime.getHours()}:${currentTime.getMinutes()}`;
 
       this.chatService
-        .sendMessage(this.usernames[0], time, this.newMessage)
+        .sendMessage(this.selectedUsername, time, this.newMessage)
         .subscribe(
           (response) => {
             console.log('Message sent successfully:', response);
-            this.newMessage = ''; // Gönderildikten sonra metin kutusunu temizle
-            this.loadMessages(); // Yeni mesajı yüklemek için API'ye istek gönderin
+            this.newMessage = '';
+            this.loadMessages();
           },
           (error) => {
             console.error('Error sending message:', error);

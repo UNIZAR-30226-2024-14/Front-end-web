@@ -1,5 +1,10 @@
 <div class="chat">
     <h3>Chat</h3>
+    <div class="user-dropdown">
+        <select [(ngModel)]="selectedUsername" class="btn btn-secondary dropdown-toggle mb-2">
+            <option *ngFor="let username of usernames" [value]="username">{{ username }}</option>
+        </select>
+    </div>
     <div class="messages">
         <!-- Burada sohbet mesajları gösterilecek -->
         <div class="message" *ngFor="let message of messages">
