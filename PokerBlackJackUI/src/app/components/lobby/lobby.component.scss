@@ -1,23 +1,73 @@
 #blackjack-lobby {
 
-    padding: 20px 0;
-  
-    .list-of-players {
-      list-style: none;
-      padding: 0;
-      margin: 20px 0 0;
-  
-      li {
-        display: inline-block;
-        margin-right: 20px;
-        vertical-align: top;
-        margin-bottom: 20px;
-      }
-    }
-  
-    .start-game-btn {
-      width: 100%;
-      margin-top: 10px;
+  padding: 20px 0;
+
+  .list-of-players {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0;
+
+    li {
+      display: inline-block;
+      margin-right: 20px;
+      vertical-align: top;
+      margin-bottom: 20px;
     }
   }
-  
+
+  .start-game-btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+.player-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.player-item {
+  max-width: 300px;
+  margin-right: 20px;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 15px;
+}
+
+#blackjack-lobby {
+  padding: 20px 0;
+}
+
+#blackjack-lobby .list-of-players {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+}
+
+#blackjack-lobby .list-of-players li {
+  display: inline-block;
+  margin-right: 20px;
+  vertical-align: top;
+  margin-bottom: 20px;
+}
+
+#blackjack-lobby .start-game-btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-play {
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.btn-play:hover {
+  background-color: #218838;
+}
