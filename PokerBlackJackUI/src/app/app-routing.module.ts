@@ -5,6 +5,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { GameComponent } from './components/game/game.component';
 import { LobbyComponent } from './components/lobby/lobby.component';
+import { PokerComponent } from './components/poker/poker.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,14 @@ const routes: Routes = [
   {
     path: 'lobby',
     component: LobbyComponent,
+  },
+  {
+    path: 'poker',
+    component: PokerComponent,
+  },
+  { // for test need to be delete in future.
+    path: 'chat',
+    component: ChatComponent,
   },
 ];
 

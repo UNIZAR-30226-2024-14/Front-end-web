@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PlayerModule } from 'src/app/models/player/player.module';
 import { BlackjackService } from 'src/app/services/blackjack.service';
+import { Player } from '../player/player';
+import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
   selector: 'app-lobby',
@@ -9,10 +10,13 @@ import { BlackjackService } from 'src/app/services/blackjack.service';
 })
 export class LobbyComponent implements OnInit {
   numberOfPlayersSelected!: number;
-  availablePlayers!: PlayerModule[];
+  availablePlayers!: Player[];
 
   //injecting the main game service
-  constructor(private blackjackService: BlackjackService) {}
+  constructor(
+    private blackjackService: BlackjackService,
+    private chatService: ChatService
+  ) {}
 
   ngOnInit(): void {
     //check if there are some players available
@@ -64,10 +68,14 @@ export class LobbyComponent implements OnInit {
       }
     }
   }
-  
 
   //this method validates the name and bankroll for each player and then calls the game service to start a new game
   startGame(): void {
+    const playerNames: string[] = this.availablePlayers.map(
+      (player) => player.name
+    );
+    this.chatService.setUsernames(playerNames);
+    console.log(playerNames); // Tüm oyuncu isimlerinin dizisi
     this.blackjackService.startGame(this.availablePlayers);
   }
 }

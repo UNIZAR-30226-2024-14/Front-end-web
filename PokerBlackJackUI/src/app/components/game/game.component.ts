@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PlayerModule } from 'src/app/models/player/player.module';
 import { BlackjackService } from 'src/app/services/blackjack.service';
+import { Player } from '../player/player';
 
 @Component({
   selector: 'app-game',
@@ -9,8 +9,8 @@ import { BlackjackService } from 'src/app/services/blackjack.service';
   styleUrl: './game.component.scss',
 })
 export class GameComponent implements OnInit {
-  players: PlayerModule[] = [];
-  dealer!: PlayerModule;
+  players: Player[] = [];
+  dealer!: Player;
   notAllPlayersAddedBet: boolean = false;
   //next variable is used to alternate the display of the button "deal cards" with "new round"
   gameStarted: boolean = false;
