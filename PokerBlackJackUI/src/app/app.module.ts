@@ -12,11 +12,10 @@ import { FormsModule } from '@angular/forms';
 import { GameComponent } from './components/game/game.component';
 import { PlayerComponent } from './components/player/player.component';
 import { LobbyComponent } from './components/lobby/lobby.component';
-import { PlayerModule } from './models/player/player.module';
 import { PlayingCardModule } from './models/playing-card/playing-card.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PokerComponent } from './components/poker/poker.component';
-import { PokerCardComponent } from "./components/poker/poker-card/poker-card.component";
+import { PokerCardComponent } from './components/poker/poker-card/poker-card.component';
 
 @NgModule({
   declarations: [
@@ -36,10 +35,9 @@ import { PokerCardComponent } from "./components/poker/poker-card/poker-card.com
     AppRoutingModule,
     MatSnackBarModule,
     FormsModule,
-    PlayerModule,
     PlayingCardModule,
     HttpClientModule,
-    PokerCardComponent
+    PokerCardComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
