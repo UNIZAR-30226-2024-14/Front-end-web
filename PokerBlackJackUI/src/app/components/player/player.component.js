@@ -126,7 +126,7 @@ var PlayerComponent = (function () {
       core_1.Component({
         selector: "app-player",
         templateUrl: "./app/components/player/player.component.html",
-        styleUrls: ["./app/components/player/player.component.css"],
+        styleUrls: ["./app/components/player/player.component.scss"],
       }),
       __metadata("design:paramtypes", [blackjack_service_1.BlackjackService]),
     ],
