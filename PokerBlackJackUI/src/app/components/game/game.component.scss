@@ -1,28 +1,64 @@
 #blackjack-game {
-    .header {
-      border-bottom: 1px solid #eee;
-      padding-bottom: 10px;
-      margin-bottom: 10px;
-    }
-  
-    .players-area
-    {
-      margin-top:10px;
-  
-      .player-container
-      {
-        display:inline-block;
-        margin-right: 20px;
-        vertical-align: top;
-      }
-    }
-  
-    .alert-box
-    {
-      padding: 20px;
-      background:#fff28d;
-      color: Red;
-      font-size: 20px;
-      letter-spacing: 2px;
+  .header {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+
+  .players-area {
+    margin-top: 10px;
+
+    .player-container {
+      display: inline-block;
+      margin-right: 20px;
+      vertical-align: top;
     }
   }
+
+  .alert-box {
+    padding: 20px;
+    background: #fff28d;
+    color: Red;
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+}
+
+#blackjack-game .header {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+#blackjack-game .players-area {
+  margin-top: 10px;
+}
+
+#blackjack-game .players-area .player-container {
+  display: inline-block;
+  margin-right: 20px;
+  vertical-align: top;
+}
+
+#blackjack-game .alert-box {
+  padding: 20px;
+  background: #fff28d;
+  color: Red;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+.gameButton {
+  margin-left: 2rem;
+}
+
+.dealer-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+.dealer-area app-player {
+  margin: 0 auto;
+}

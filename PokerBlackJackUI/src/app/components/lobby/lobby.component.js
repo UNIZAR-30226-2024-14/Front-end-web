@@ -24,26 +24,20 @@ var __metadata =
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
       return Reflect.metadata(k, v);
   };
-/**
- * Created by dragos on 16/12/2016.
- */
+
 var core_1 = require("@angular/core");
 var blackjack_service_1 = require("../../services/blackjack.service");
 var LobbyComponent = (function () {
-  //injecting the main game service
   function LobbyComponent(blackjackService) {
     this.blackjackService = blackjackService;
   }
   LobbyComponent.prototype.ngOnInit = function () {
-    //check if there are some players available
     var playersFromService = this.blackjackService.getPlayers();
     if (playersFromService !== undefined && playersFromService.length) {
       this.availablePlayers = playersFromService;
       this.numberOfPlayersSelected = this.availablePlayers.length;
-      //change some properties for each available player
       for (var _i = 0, _a = this.availablePlayers; _i < _a.length; _i++) {
         var player = _a[_i];
-        //put it in edit mode
         player.gameModeOn = false;
         player.cards = [];
         player.currentBetValue = 0;
@@ -76,7 +70,7 @@ var LobbyComponent = (function () {
       });
     }
   };
-  //this method validates the name and bankroll for each player and then calls the game service to start a new game
+  
   LobbyComponent.prototype.startGame = function () {
     this.blackjackService.startGame(this.availablePlayers);
   };
@@ -85,7 +79,7 @@ var LobbyComponent = (function () {
       core_1.Component({
         selector: "app-lobby",
         templateUrl: "./app/components/lobby/lobby.component.html",
-        styleUrls: ["lobby.component.css"],
+        styleUrls: ["lobby.component.scss"],
       }),
       __metadata("design:paramtypes", [blackjack_service_1.BlackjackService]),
     ],
@@ -94,4 +88,4 @@ var LobbyComponent = (function () {
   return LobbyComponent;
 })();
 exports.LobbyComponent = LobbyComponent;
-//# sourceMappingURL=lobby.component.js.map
+

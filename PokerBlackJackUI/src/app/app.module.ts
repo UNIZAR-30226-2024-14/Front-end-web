@@ -16,6 +16,7 @@ import { PlayingCardModule } from './models/playing-card/playing-card.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PokerComponent } from './components/poker/poker.component';
 import { PokerCardComponent } from './components/poker/poker-card/poker-card.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { PokerCardComponent } from './components/poker/poker-card/poker-card.com
     PlayingCardModule,
     HttpClientModule,
     PokerCardComponent,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

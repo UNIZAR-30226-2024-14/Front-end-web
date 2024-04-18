@@ -24,14 +24,11 @@ var __metadata =
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
       return Reflect.metadata(k, v);
   };
-/**
- * Created by dragos on 16/12/2016.
- */
+
 var core_1 = require("@angular/core");
 var player_model_1 = require("../../models/player.model");
 var blackjack_service_1 = require("../../services/blackjack.service");
 var PlayerComponent = (function () {
-  //injecting the main game service
   function PlayerComponent(blackjackService) {
     this.blackjackService = blackjackService;
   }
@@ -40,7 +37,7 @@ var PlayerComponent = (function () {
       this.player.gameModeOn = true;
     }
   };
-  //#region CODE FOR EDIT MODE
+
   //this function is called when the user changes the template value of bankroll. I need to make sure the typed value is a real number
   PlayerComponent.prototype.restrictBankrollInputToNumber = function (target) {
     var value = target.value;
@@ -129,7 +126,7 @@ var PlayerComponent = (function () {
       core_1.Component({
         selector: "app-player",
         templateUrl: "./app/components/player/player.component.html",
-        styleUrls: ["./app/components/player/player.component.css"],
+        styleUrls: ["./app/components/player/player.component.scss"],
       }),
       __metadata("design:paramtypes", [blackjack_service_1.BlackjackService]),
     ],

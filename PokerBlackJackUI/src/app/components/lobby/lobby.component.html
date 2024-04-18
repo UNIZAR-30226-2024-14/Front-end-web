@@ -13,14 +13,17 @@
         </div>
     </div>
 
-    <div *ngIf="numberOfPlayersSelected > 0" class="player-names mt-4">
+    <div *ngIf="numberOfPlayersSelected > 0" class="player-names mt-lg-5">
         <form (ngSubmit)="startGame()" #playerSelectionForm="ngForm">
-            <button type="submit" class="btn btn-success">PLAY!</button>
-            <ul class="list-group mt-3">
-                <li *ngFor="let player of availablePlayers" class="list-group-item">
+            <div class="col-md-12 row justify-content-center m-lg-3">
+                <button type="submit" class="btn btn-danger btn-play col-md-2"
+                    [disabled]="!isGameStartValid()">PLAY!</button>
+            </div>
+            <div class="d-flex flex-wrap justify-content-center mt-3">
+                <div class="col-12 col-md-6 col-lg-4 player-item" *ngFor="let player of availablePlayers">
                     <app-player [player]="player"></app-player>
-                </li>
-            </ul>
+                </div>
+            </div>
         </form>
     </div>
 </div>

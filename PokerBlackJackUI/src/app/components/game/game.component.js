@@ -128,4 +128,3 @@ var GameComponent = (function () {
   return GameComponent;
 })();
 exports.GameComponent = GameComponent;
-//# sourceMappingURL=game.component.js.map
