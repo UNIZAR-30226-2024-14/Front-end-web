@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss', '../../../styles.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router, private loginService: LoginService) {}
 
   ngOnInit(): void {}
+
+  playBlackjack(): void {
+    if (this.loginService.isLoggedIn()) {
+      this.router.navigate(['/lobby']);
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
 }
