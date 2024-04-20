@@ -1,0 +1,25 @@
+<div class="text-center">
+    <div class="main-player col-12 text-center table-cards mb-1">
+        <ng-container *ngFor="let card of playerHand_">
+            <app-poker-card [cardImageUrl]="card.image"></app-poker-card>
+        </ng-container>
+    </div>
+    <span class="player-name">
+        {{player.playerName}}
+    </span>
+    <div class="button-container">
+        <button class="button m-1 red" *ngIf="!player.isRaise">Fold</button>
+        <button class="button m-1 orange" *ngIf="!player.isRaise">Call</button>
+        <button class="button m-1 green" *ngIf="!player.isRaise" (click)="showRaiseSlider()">Raise</button>
+
+        <div class="raise-container " *ngIf="player.isRaise">
+            <!-- add return/close button  -->
+            <button class="button m-1 dark-red m-1" (click)="cancelBet()">Close</button>
+            <input type="range" min="5" max="150" step="5" [value]="player.betAmount" (input)="updateBetAmount($any($event.target ).value)" class="form-range m-2" id="raiseRange">
+            <div class="bet-indicator m-2">{{ player.betAmount }} <span>$</span></div>
+            <button class="button m-1 green m-2" (click)="confirmBet()">OK</button>
+        </div>
+    </div>
+</div>
+
+

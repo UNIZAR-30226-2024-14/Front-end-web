@@ -17,31 +17,33 @@ import { PlayingCardModule } from './models/playing-card/playing-card.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PokerComponent } from './components/poker/poker.component';
 import { PokerCardComponent } from "./components/poker/poker-card/poker-card.component";
+import { PokerPlayerComponent } from "./components/poker/poker-player/poker-player.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    HeaderComponent,
-    LoginComponent,
-    SignupComponent,
-    ChatComponent,
-    GameComponent,
-    PlayerComponent,
-    LobbyComponent,
-    PokerComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MatSnackBarModule,
-    FormsModule,
-    PlayerModule,
-    PlayingCardModule,
-    HttpClientModule,
-    PokerCardComponent
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        HeaderComponent,
+        LoginComponent,
+        SignupComponent,
+        ChatComponent,
+        GameComponent,
+        PlayerComponent,
+        LobbyComponent,
+        PokerComponent,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        MatSnackBarModule,
+        FormsModule,
+        PlayerModule,
+        PlayingCardModule,
+        HttpClientModule,
+        PokerCardComponent,
+        PokerPlayerComponent
+    ]
 })
 export class AppModule {}
