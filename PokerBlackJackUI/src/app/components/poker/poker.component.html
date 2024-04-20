@@ -14,39 +14,34 @@
         <div class="col-10 poker-table">
             <div class="row">
                 <!-- player2 -->
-                <div class="player2 col-12 text-center table-cards ">
-                    <app-poker-card *ngFor="let card of combinedCards" [cardImageUrl]="card.image"></app-poker-card>
+                <div class="player2 col-12 text-center table-cards rotate-up">
+                    <app-poker-player></app-poker-player>
                 </div>
             </div>
-
             <div class="row w-100">
                 <!-- player1 -->
                 <div class="player1 col-3 text-center table-cards rotate-left">
-                    <app-poker-card *ngFor="let card of playerHand" [cardImageUrl]="card.image"></app-poker-card>
+                    <app-poker-player></app-poker-player>
                 </div>
                 <!-- table-cards -->
                 <div class="col-6 text-center table-cards">
-                    <app-poker-card *ngFor="let card of tableHand" [cardImageUrl]="card.image"></app-poker-card>
+                    <ng-container *ngFor="let card of tableHand">
+                        <app-poker-card [cardImageUrl]="card.image" ></app-poker-card>
+                    </ng-container>
                 </div>
                 <!-- player3 -->
                 <div class="player3 col-3 text-center table-cards rotate-right">
-                    <app-poker-card *ngFor="let card of playerHand" [cardImageUrl]="card.image"></app-poker-card>
+                    <app-poker-player></app-poker-player>
                 </div>
             </div>
             <!-- main-player -->
             <div class="row">
-                <div class="main-player col-12 text-center table-cards">
-                  <app-poker-card *ngFor="let card of playerHand" [cardImageUrl]="card.image"></app-poker-card>
-                </div>
-              </div>
+                <app-poker-player (click)="addOneCard()"></app-poker-player>
+            </div>
         </div>
         <div class="col-2 chat">
             <app-chat></app-chat>
         </div>
-    </div>
-    <div>
-        <!-- combined cards -->
-        combined cards: {{combinedCards | json}}
     </div>
 </body>
 </html>
