@@ -13,7 +13,7 @@ html {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background-image: url(../../../assets/img/poker-table.png);
+  background-image: url(../../../assets/img/poker-table-texture.jpg);
   background-size: cover;
   background-position: center;
   border-radius: 30px;
@@ -46,4 +46,8 @@ html {
 
 .rotate-right {
   transform: rotate(-90deg);
+}
+
+.rotate-up {
+  transform: rotate(180deg);
 }
