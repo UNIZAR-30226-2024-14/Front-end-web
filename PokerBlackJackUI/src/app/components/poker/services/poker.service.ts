@@ -1,11 +1,16 @@
-import { Injectable, output } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { Card } from '../models/card.model';
+import { PokerPlayerService } from './poker-player.service';
+import { PokerPlayerComponent } from '../poker-player/poker-player.component';
+import { PlayerComponent } from '../../player/player.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokerService {
-  constructor() { }
+  constructor(
+    pokerPlayerService: PokerPlayerService,
+  ) { }
 
   pokerCards: Card[] = [
     { image: '../../../../assets/img/poker-cards/2_of_clubs.png', value: 2, suit: 'Clubs' },
@@ -66,17 +71,6 @@ export class PokerService {
   private tableCards: Card[] = [];
   private combinedCards: Card[] = [];
 
-  getRandomPlayerHand(): Card[] {
-    this.playerHand = [];
-    for (let i = 0; i < 2; i++) {
-      const randomIndex = Math.floor(Math.random() * this.pokerCards.length);
-      const selectedCard = this.pokerCards[randomIndex];
-      this.playerHand.push(selectedCard);
-      this.pokerCards.splice(randomIndex, 1); // Seçilen kartı listeden çıkar
-    }
-    return this.playerHand;
-  }
-
   getRandomTableCards(): Card[] {
     this.tableCards = [];
     for (let i = 0; i < 3; i++) {
@@ -85,6 +79,14 @@ export class PokerService {
       this.tableCards.push(selectedCard);
       this.pokerCards.splice(randomIndex, 1); // Seçilen kartı listeden çıkar
     }
+    return this.tableCards;
+  }
+
+  addRandomTableOneCard(): Card[] {
+    const randomIndex = Math.floor(Math.random() * this.pokerCards.length);
+    const selectedCard = this.pokerCards[randomIndex];
+    this.tableCards.push(selectedCard);
+    this.pokerCards.splice(randomIndex, 1); // Seçilen kartı listeden çıkar
     return this.tableCards;
   }
 
