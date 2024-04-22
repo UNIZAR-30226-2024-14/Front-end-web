@@ -14,4 +14,15 @@ export class SignupService {
   signUp(signupData: SignupModel): Observable<any> {
     return this.http.post<any>(this.apiUrl + '/signup', signupData);
   }
+
+  isEmailValid(email: string): boolean {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  }
+
+  isPasswordValid(password: string): boolean {
+    const passwordPattern =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/;
+    return passwordPattern.test(password);
+  }
 }

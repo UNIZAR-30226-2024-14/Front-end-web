@@ -17,23 +17,36 @@ export class SignupComponent implements OnInit {
   passwordAgain: string = '';
   rememberMe: boolean = false;
 
-  constructor(private signupService: SignupService) {}
+  constructor(public signupService: SignupService) {}
 
   signUp(): void {
     if (this.signupModel.password !== this.passwordAgain) {
-      console.log('Passwords do not match');
+      alert('Passwords do not match');
+      return;
+    }
+
+    if (!this.signupService.isEmailValid(this.signupModel.email)) {
+      alert('Invalid email format');
+      return;
+    }
+
+    if (!this.signupService.isPasswordValid(this.signupModel.password)) {
+      alert(
+        'Password must contain at least 8 characters, including at least one letter and one number'
+      );
       return;
     }
 
     this.signupService.signUp(this.signupModel).subscribe(
       (response) => {
+        alert('Signup successful');
         console.log('Signup successful:', response);
       },
       (error) => {
+        alert('Signup error: ' + error);
         console.log('Signup error:', error);
       }
     );
   }
-
   ngOnInit(): void {}
 }

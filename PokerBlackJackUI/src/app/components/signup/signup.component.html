@@ -14,19 +14,26 @@
                     <label for="email" class="form-label">Email Address</label>
                     <input type="email" class="form-control" id="email" placeholder="Enter your email"
                         [(ngModel)]="signupModel.email" name="email">
-                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <small *ngIf="signupModel.email && !signupService.isEmailValid(signupModel.email)"
+                        class="form-text text-danger">Invalid
+                        email format</small>
                 </div>
 
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" placeholder="Enter your password"
                         [(ngModel)]="signupModel.password" name="password">
+                    <small *ngIf="signupModel.password && !signupService.isPasswordValid(signupModel.password)"
+                        class="form-text text-danger">Password must contain at least 8 characters, including at least
+                        one letter and one number</small>
                 </div>
 
                 <div class="mb-3">
                     <label for="passwordAgain" class="form-label">Password Again</label>
                     <input type="password" class="form-control" id="passwordAgain"
                         placeholder="Enter your password again" [(ngModel)]="passwordAgain" name="passwordAgain">
+                    <small *ngIf="signupModel.password !== passwordAgain" class="form-text text-danger">Passwords do not
+                        match</small>
                 </div>
 
                 <div class="mb-3 form-check">
@@ -36,7 +43,7 @@
                 </div>
 
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                    <button type="submit" class="btn btn-primary" (click)="signUp()">Sign Up</button>
                 </div>
             </form>
         </div>
