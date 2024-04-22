@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginModel } from './login.model';
 import { LoginService } from './login.service';
+import { SignupService } from '../signup/signup.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -19,12 +21,29 @@ export class LoginComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private signupService: SignupService
   ) {}
 
   ngOnInit(): void {}
 
-  login(): void {
+  login(loginForm: NgForm): void {
+    if (loginForm.invalid) {
+      return;
+    }
+
+    if (!this.isEmailValid(this.loginModel.email)) {
+      alert('Invalid email format');
+      return;
+    }
+
+    if (!this.isPasswordValid(this.loginModel.password)) {
+      alert(
+        'Password must contain at least 8 characters, including at least one letter and one number'
+      );
+      return;
+    }
+
     this.loginService.login(this.loginModel).subscribe(
       (response) => {
         this.router.navigate(['/']);
@@ -33,5 +52,17 @@ export class LoginComponent implements OnInit {
         console.log('Login error:', error);
       }
     );
+  }
+
+  signUp(): void {
+    this.router.navigate(['/signup']);
+  }
+
+  isEmailValid(email: string): boolean {
+    return this.signupService.isEmailValid(email);
+  }
+
+  isPasswordValid(password: string): boolean {
+    return this.signupService.isPasswordValid(password);
   }
 }
