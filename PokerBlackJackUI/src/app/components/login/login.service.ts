@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
 import { LoginModel } from './login.model';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -8,20 +8,23 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class LoginService {
-  private apiUrl: string = '';
   loggedIn: boolean = false;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    @Inject('apiUrl') private apiUrl: string,
+    private http: HttpClient,
+    private router: Router
+  ) {}
+
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer YOUR_ACCESS_TOKEN',
+  });
 
   login(loginModel: LoginModel): Observable<any> {
-    this.loggedIn = true; // to do change it when api comes.
-    if (this.isLoggedIn()) {
-      this.router.navigate(['/lobby']);
-    } else {
-      console.log('Invalid credentials');
-      this.router.navigate(['/login']);
-    }
-    return this.http.post<any>(this.apiUrl + '/login', loginModel);
+    return this.http.post<any>(this.apiUrl + '/users/token', loginModel, {
+      headers: this.headers,
+    });
   }
 
   isLoggedIn(): boolean {

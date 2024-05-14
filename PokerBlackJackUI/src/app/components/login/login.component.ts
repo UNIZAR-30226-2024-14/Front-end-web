@@ -12,11 +12,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  loginModel: LoginModel = {
-    email: '',
-    password: '',
-    rememberMe: false,
-  };
+  loginModel: LoginModel = { username: '', password: '' };
 
   constructor(
     private http: HttpClient,
@@ -32,10 +28,14 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    if (!this.isEmailValid(this.loginModel.email)) {
-      alert('Invalid email format');
-      return;
-    }
+    this.loginService.login(this.loginModel).subscribe(
+      (response) => {
+        this.router.navigate(['/lobby']);
+      },
+      (error) => {
+        console.log('Login error:', error);
+      }
+    );
 
     if (!this.isPasswordValid(this.loginModel.password)) {
       alert(

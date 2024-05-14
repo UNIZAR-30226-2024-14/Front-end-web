@@ -5,12 +5,13 @@
         <h2 class="text-center mb-4">Login</h2>
 
         <div class="mb-3">
-          <label for="email" class="form-label">Email Address</label>
-          <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email"
-            [(ngModel)]="loginModel.email">
-          <div *ngIf="loginModel.email && !isEmailValid(loginModel.email)" class="text-danger">Invalid email format
-          </div>
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username"
+            [(ngModel)]="loginModel.username" pattern="[a-zA-Z0-9]+">
+          <div *ngIf="loginForm.controls['username'].invalid && loginForm.controls['username'].dirty"
+               class="text-danger">Invalid username</div>
         </div>
+        
 
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>

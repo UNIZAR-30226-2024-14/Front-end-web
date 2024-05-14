@@ -41,7 +41,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PokerCardComponent,
     NgbModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'apiUrl',
+      useValue: 'http://64.225.78.184:8000',
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

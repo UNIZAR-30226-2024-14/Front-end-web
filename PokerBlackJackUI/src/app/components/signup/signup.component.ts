@@ -37,7 +37,8 @@ export class SignupComponent implements OnInit {
       return;
     }
 
-    this.signupService.signUp(this.signupModel).subscribe(
+    this.signupService.signUp(this.signupModel)
+    .subscribe(
       (response) => {
         alert('Signup successful');
         console.log('Signup successful:', response);
